@@ -1,0 +1,23 @@
+name: Testing WorkFlow
+on:
+    push:
+        branches: 
+            - main
+    pull_request: 
+        branches: 
+            - main
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Copiando repositorio
+              uses: actions/checkout@v2
+            - name: Instalando node
+              uses: actions/setup-node@v2
+              with:
+                  node-version: '14'
+            - name: Instalar dependencias
+              run: npm install
+            - name: Correr pruebas
+              run: npm run test
